@@ -2,7 +2,8 @@ def check_syntax(str):
   openables = {
     "(": ")",
     "[": "]",
-    "{": "}"
+    "{": "}",
+    "<": ">"
   }
   open = []
   opening_chars = openables.keys()
@@ -36,10 +37,11 @@ def check_syntax(str):
 
   if len(open) > 0:
     required_char = openables[open[-1]]
-    print("* You have a syntax error: the string ended without a closing {}".format(required_char))
+    print("* You have a syntax error: the string ended without a closing {}.".format(required_char))
 
   return not open
 
+print("Base checks:")
 print(check_syntax("(this)[] is some text"))
 print("*****")
 print(check_syntax("(this)] is some text"))
@@ -49,3 +51,16 @@ print("*****")
 print(check_syntax("[this][ is some text"))
 print("*****")
 print(check_syntax("[this] is some text"))
+
+print()
+print("<> checks:")
+print(check_syntax("<html> (this)[] is some text</html>"))
+print("*****")
+print(check_syntax("<html> (this)] is some text</html>"))
+print("*****")
+print(check_syntax("<html> [(this] is some text</html>"))
+print("*****")
+print(check_syntax("<html> [this][ is some text</html>"))
+print("*****")
+print(check_syntax("<html> [this] is some text</html"))
+print("*****")
